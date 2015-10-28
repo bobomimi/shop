@@ -1,0 +1,81 @@
+
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+
+
+<body>
+
+    <!-- Navigation -->
+    
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Shop Name</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Category 1</a>
+                    <a href="#" class="list-group-item">Category 2</a>
+                    <a href="#" class="list-group-item">Category 3</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row">
+<% cache ['store', Product.latest] do %>
+<% @products.each do |product| %>
+<% cache ['col-sm-4 col-lg-4 col-md-4', product] do %>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <%= link_to image_tag(product.image, size: "320x150"), product %>
+            <div class="caption">
+                <h4 class="pull-right"><%= number_to_currency(product.price) %></h4>
+                <h4><%= product.title %></h4>
+            </div>
+        </div>
+    </div>
+<% end %>
+<% end %>
+<% end %>
+
+
+                    
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
