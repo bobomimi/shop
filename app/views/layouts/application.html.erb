@@ -8,37 +8,82 @@
 </head>
 <body class="<%= controller.controller_name %>">
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+  <!--  <div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header" style="float:right"><a class="navbar-brand" href="#">הגנה עצמית</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a>
+                </li>
+                <li>
+                <% if user_signed_in? %>
+                        <li><%= current_user.email %></li>
+                        <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+                        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %><li>
+                        <% else %>
+                        <li><%= link_to "הירשם", new_user_registration_path, :class => 'navbar-link'  %> </li>
+                        <li><%= link_to "התחבר", new_user_session_path, :class => 'navbar-link'  %></li>
+                        <% end %>
+                        </li>
+                <li><a href="/about-us">הסל שלי</a>
+                </li>
+                <li><a href="/contact"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+<!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
                 </button>
-                <%= link_to 'Store', store_path, class: 'navbar-brand' %>
+                
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <% if user_signed_in? %>
+                        <li><%= link_to 'ערוך פרופיל', edit_user_registration_path, :class => 'navbar-link' %></li>
+                        <li><%= link_to "התנתק", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %><li>
+                        <% else %>
+                        <li><%= link_to "הירשם", new_user_registration_path, :class => 'navbar-link'  %> </li>
+                        <li><%= link_to "התחבר", new_user_session_path, :class => 'navbar-link'  %></li>
+                        <% end %>
                     <li>
-                        <%= link_to 'Products', products_path %>
+                        <a class="page-scroll" href="#about">על החנות</a>
                     </li>
                     <li>
-                        <a href="">my cart</a>
+                        <a class="page-scroll" href="http://www.foxnews.com/world/terrorism/index.html">חדשות</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a class="page-scroll" href="#products">מוצרים</a>
                     </li>
+
+                    <li>
+                      <a href=""></a>
+                    </li>
+
+                    <a class="navbar-brand page-scroll" href="#page-top">
+                      <i class="fa fa-play-circle"></i>  <span class="light"></span>החנות שלי
+                    </a>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>
-
+    </nav> 
 <%= yield %>
 
 </body>

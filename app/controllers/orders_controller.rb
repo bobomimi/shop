@@ -16,10 +16,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    if @cart.line_items.empty?
-      redirect_to store_url, notice: "Your cart is empty"
-      return
-    end
     @order = Order.new
   end
 
@@ -30,18 +26,23 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+ 
     @order = Order.new(order_params)
-
-    respond_to do |format|
+    @order.add_line_items_from_cart(@cart)
+    @order.ip_address = request.remote_ip
+    
       if @order.save
-        format.html { redirect_to new_charge_url, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        if @order.purchase
+          render :action => "success"
+        else
+          render :action => "failure"
+        end
+        else
+          render :action => 'new'
+        end
       end
-    end
-  end
+    
+
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
@@ -75,6 +76,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:contact_name, :country, :street_address, :city, :zip_postal_code, :mobile)
+      params.require(:order).permit(:country, :name, :address, :city, :zip_postal_code, :phone_number, :email, :cart_id, :ip_address, :first_name, :last_name, :card_type, :card_expires_on)
     end
 end

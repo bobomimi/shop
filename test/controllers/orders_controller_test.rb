@@ -11,25 +11,14 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:orders)
   end
 
-  test "requires item in cart" do
-    get :new
-    assert_redirected_to store_path
-    assert_equal flash[:notice], 'Your cart is empty'
-  end
-
   test "should get new" do
-    item = LineItem.new
-    item.build_cart
-    item.product = products(:ruby)
-    item.save!
-    session[:cart_id] = item.cart.id
     get :new
     assert_response :success
   end
 
   test "should create order" do
     assert_difference('Order.count') do
-      post :create, order: { city: @order.city, contact_name: @order.contact_name, country: @order.country, mobile: @order.mobile, street_address: @order.street_address, zip_postal_code: @order.zip_postal_code }
+      post :create, order: { address: @order.address, card_expires_on: @order.card_expires_on, card_type: @order.card_type, cart_id: @order.cart_id, city: @order.city, country: @order.country, email: @order.email, first_name: @order.first_name, ip_address: @order.ip_address, last_name: @order.last_name, name: @order.name, phone_number: @order.phone_number, zip_postal_code: @order.zip_postal_code }
     end
 
     assert_redirected_to order_path(assigns(:order))
@@ -46,7 +35,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "should update order" do
-    patch :update, id: @order, order: { city: @order.city, contact_name: @order.contact_name, country: @order.country, mobile: @order.mobile, street_address: @order.street_address, zip_postal_code: @order.zip_postal_code }
+    patch :update, id: @order, order: { address: @order.address, card_expires_on: @order.card_expires_on, card_type: @order.card_type, cart_id: @order.cart_id, city: @order.city, country: @order.country, email: @order.email, first_name: @order.first_name, ip_address: @order.ip_address, last_name: @order.last_name, name: @order.name, phone_number: @order.phone_number, zip_postal_code: @order.zip_postal_code }
     assert_redirected_to order_path(assigns(:order))
   end
 

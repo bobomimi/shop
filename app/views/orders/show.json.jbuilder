@@ -1,1 +1,1 @@
-json.extract! @order, :id, :contact_name, :country, :street_address, :city, :zip_postal_code, :mobile, :created_at, :updated_at
+json.extract! @order, :id, :country, :name, :address, :city, :zip_postal_code, :phone_number, :email, :cart_id, :ip_address, :first_name, :last_name, :card_type, :card_expires_on, :created_at, :updated_at

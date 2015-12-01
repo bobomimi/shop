@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Contact name:</strong>
-  <%= @order.contact_name %>
-</p>
-
-<p>
   <strong>Country:</strong>
   <%= @order.country %>
 </p>
 
 <p>
-  <strong>Street address:</strong>
-  <%= @order.street_address %>
+  <strong>Name:</strong>
+  <%= @order.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
 </p>
 
 <p>
@@ -26,8 +26,43 @@
 </p>
 
 <p>
-  <strong>Mobile:</strong>
-  <%= @order.mobile %>
+  <strong>Phone number:</strong>
+  <%= @order.phone_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @order.cart_id %>
+</p>
+
+<p>
+  <strong>Ip address:</strong>
+  <%= @order.ip_address %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @order.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @order.last_name %>
+</p>
+
+<p>
+  <strong>Card type:</strong>
+  <%= @order.card_type %>
+</p>
+
+<p>
+  <strong>Card expires on:</strong>
+  <%= @order.card_expires_on %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

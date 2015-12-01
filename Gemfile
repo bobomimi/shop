@@ -49,3 +49,13 @@ end
 
 gem 'stripe'
 
+gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-digitalocean'
+
+group :production do
+	gem 'pg'
+end
+
+gem 'activemerchant', '~> 1.55'
